@@ -21,5 +21,18 @@ def drawField():
 
 drawField()
 
-#Test  
-#Test 2
+#Spielzug durchführen (Feld wählen)
+def Spielzug():
+    Zug = 1
+
+    for Zug in range(9):
+        if Zug % 2 == 0:
+            Eingabe = input("Spieler2: Wähle dein Feld (Zeile,Spalte)")
+        
+        else:
+            Eingabe = input("Spieler1: Wähle dein Feld (Zeile,Spalte)")
+
+    Zeile, Spalte = Eingabe.split(",")
+
+    return Zeile, Spalte
+
