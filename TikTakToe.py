@@ -1,0 +1,8 @@
+#Spielfeldeingabe erstellt
+Spielfeld = [
+            ["" ,"" ,""],
+            ["" ,"" ,""],
+            ["" ,"" ,""]]
+
+
+
