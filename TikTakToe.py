@@ -36,3 +36,4 @@ def Spielzug():
 
     return Zeile, Spalte
 
+print(Spielzug())
