@@ -16,8 +16,8 @@ def drawField():
         if y < 2:
             print("_________|_________|_________") 
 
-        #if y == 1:
-           # Spalte = 3 
+        if y == 1:
+            Spalte = 3 
 
 drawField()
 
