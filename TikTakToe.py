@@ -47,7 +47,7 @@ def prüfe_eingabe(Zeile, Spalte, Spieler):
     return Spielfeld
 
 
-def printXO(n,i):
+def print_xo(n,i):
     if Spielfeld[n-1][i-1] == 1:
         return("X")
     elif Spielfeld[n-1][i-1] == 2:
@@ -56,21 +56,21 @@ def printXO(n,i):
         return(" ")
 
 
-def drawField():
+def draw_field():
     print("        |        |        ")
-    print(f"   {printXO(1,1)}    |    {printXO(1,2)}   |    {printXO(1,3)}    ")
+    print(f"   {print_xo(1,1)}    |    {print_xo(1,2)}   |    {print_xo(1,3)}    ")
     print("________|________|________") 
     print("        |        |        ")
-    print(f"   {printXO(2,1)}    |    {printXO(2,2)}   |    {printXO(2,3)}    ")
+    print(f"   {print_xo(2,1)}    |    {print_xo(2,2)}   |    {print_xo(2,3)}    ")
     print("________|________|________") 
     print("        |        |        ")
-    print(f"   {printXO(3,1)}    |    {printXO(3,2)}   |    {printXO(3,3)}    ")
+    print(f"   {print_xo(3,1)}    |    {print_xo(3,2)}   |    {print_xo(3,3)}    ")
     print("        |        |        ")
 
 #Tests
-drawField()
+draw_field()
 Zug = 6
 Zeile, Spalte, Spieler = spielzug()
 prüfe_eingabe(Zeile, Spalte, Spieler)
 print(Spielfeld)
-drawField()
+draw_field()
