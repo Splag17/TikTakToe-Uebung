@@ -32,24 +32,24 @@ def spielzug():
 
     Zeile, Spalte = map(int, Eingabe.split(","))
 #>>>>>>>>>>>>>>>>> Hier noch ausschließen, dass Eingaben unter 1 und über 3 gemacht werden! <<<<<<<<<<<<<<<<<<<<<
-    return Zeile, Spalte, Spieler
+    return Zeile - 1, Spalte - 1, Spieler
 
 
 def prüfe_eingabe(Zeile, Spalte, Spieler):
 
-    if Spielfeld[Zeile, Spalte] == 1:
+    if Spielfeld[Zeile][Spalte] == 1:
         print('Dieses Feld ist leider schon mit einem "X" belegt.')
-    elif Spielfeld[Zeile, Spalte] == 2:
+    elif Spielfeld[Zeile][Spalte] == 2:
         print('Dieses Feld ist leider schon mit einem "O" belegt.')
     else:
-        Spielfeld[Zeile,Spalte] = Spieler
+        Spielfeld[Zeile][Spalte] = Spieler
 
-    print(Spielfeld)
     return Spielfeld
 
 
 #Tests
 draw_field()
-Zug = 5
-print(spielzug())
-print(type(spielzug()[1]))
+Zug = 6
+Zeile, Spalte, Spieler = spielzug()
+prüfe_eingabe(Zeile, Spalte, Spieler)
+print(Spielfeld)
