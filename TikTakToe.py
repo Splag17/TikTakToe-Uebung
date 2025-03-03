@@ -5,7 +5,7 @@ Spielfeld = [
             ["" ,"" ,""]]
 
 #Spielfeld visualisieren
-def drawField():
+def draw_field():
     Zeile = 3
     Spalte = 2
 
@@ -21,20 +21,35 @@ def drawField():
 
 
 #Spielzug durchführen (Feld wählen)
-def Spielzug():
-    
+def spielzug():    
     
     if Zug % 2 == 0:
         Eingabe = input("\nSpieler2: Wähle dein Feld (Zeile,Spalte): ")
-        
+        Spieler = 2
     else:
         Eingabe = input("\nSpieler1: Wähle dein Feld (Zeile,Spalte): ")
+        Spieler = 1
 
-    Zeile, Spalte = Eingabe.split(",")
+    Zeile, Spalte = map(int, Eingabe.split(","))
+#>>>>>>>>>>>>>>>>> Hier noch ausschließen, dass Eingaben unter 1 und über 3 gemacht werden! <<<<<<<<<<<<<<<<<<<<<
+    return Zeile - 1, Spalte - 1, Spieler
 
-    return Zeile, Spalte
+
+def prüfe_eingabe(Zeile, Spalte, Spieler):
+
+    if Spielfeld[Zeile][Spalte] == 1:
+        print('Dieses Feld ist leider schon mit einem "X" belegt.')
+    elif Spielfeld[Zeile][Spalte] == 2:
+        print('Dieses Feld ist leider schon mit einem "O" belegt.')
+    else:
+        Spielfeld[Zeile][Spalte] = Spieler
+
+    return Spielfeld
 
 
-drawField()
-Zug = 5
-print(Spielzug())
+#Tests
+draw_field()
+Zug = 6
+Zeile, Spalte, Spieler = spielzug()
+prüfe_eingabe(Zeile, Spalte, Spieler)
+print(Spielfeld)
