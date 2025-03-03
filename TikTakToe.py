@@ -5,19 +5,19 @@ Spielfeld = [
             ["" ,"" ,""]]
 
 #Spielfeld visualisieren
-def draw_field():
-    Zeile = 3
-    Spalte = 2
+# def draw_field():
+#     Zeile = 3
+#     Spalte = 2
 
-    for y in range(Zeile):
-        for x in range (Spalte):
-            print("         |         |         ")
+#     for y in range(Zeile):
+#         for x in range (Spalte):
+#             print("         |         |         ")
 
-        if y < 2:
-            print("_________|_________|_________") 
+#         if y < 2:
+#             print("_________|_________|_________") 
 
-        if y == 1:
-            Spalte = 3 
+#         if y == 1:
+#             Spalte = 3 
 
 
 #Spielzug durchführen (Feld wählen)
@@ -47,9 +47,30 @@ def prüfe_eingabe(Zeile, Spalte, Spieler):
     return Spielfeld
 
 
+def print_xo(n,i):
+    if Spielfeld[n-1][i-1] == 1:
+        return("X")
+    elif Spielfeld[n-1][i-1] == 2:
+        return("O")
+    else:
+        return(" ")
+
+
+def draw_field():
+    print("        |        |        ")
+    print(f"   {print_xo(1,1)}    |    {print_xo(1,2)}   |    {print_xo(1,3)}    ")
+    print("________|________|________") 
+    print("        |        |        ")
+    print(f"   {print_xo(2,1)}    |    {print_xo(2,2)}   |    {print_xo(2,3)}    ")
+    print("________|________|________") 
+    print("        |        |        ")
+    print(f"   {print_xo(3,1)}    |    {print_xo(3,2)}   |    {print_xo(3,3)}    ")
+    print("        |        |        ")
+
 #Tests
 draw_field()
 Zug = 6
 Zeile, Spalte, Spieler = spielzug()
 prüfe_eingabe(Zeile, Spalte, Spieler)
 print(Spielfeld)
+draw_field()
