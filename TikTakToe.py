@@ -24,9 +24,9 @@ def spielzug(Zug):
 def prüfe_eingabe(Zeile, Spalte, Spieler):
 
     if Spielfeld[Zeile][Spalte] == 1:
-        print('Dieses Feld ist leider schon mit einem "X" belegt.')
+        print('\nDieses Feld ist leider schon mit einem "X" belegt.')
     elif Spielfeld[Zeile][Spalte] == 2:
-        print('Dieses Feld ist leider schon mit einem "O" belegt.')
+        print('\nDieses Feld ist leider schon mit einem "O" belegt.')
     else:
         Spielfeld[Zeile][Spalte] = Spieler
 
@@ -47,7 +47,7 @@ def place_xo(n,i):
 #Feld mit Nutzereingaben zeichnen
 def draw_field():
 
-    print("        |        |        ")
+    print("\n        |        |        ")
     print(f"   {place_xo(1,1)}    |    {place_xo(1,2)}   |    {place_xo(1,3)}    ")
     print("________|________|________") 
     print("        |        |        ")
@@ -66,13 +66,16 @@ def check_win():
         for z in range(3):
  
             if Spielfeld[z] == [x, x, x]:
-                    print(f"Spieler{x} hat gewonnen!")  
-
+                print(f"\nSpieler{x} hat gewonnen!")  
             elif all(Spielfeld[i][z] == x for i in range(3)):
-                    print(f"Spieler{x} hat gewonnen!") 
+                print(f"\nSpieler{x} hat gewonnen!") 
 
-            #Diagonal fehlt noch!    
-        x += 1     
+        if all(Spielfeld[i][i] == x for i in range(3)):
+            print(f"\nSpieler{x} hat gewonnen!")
+        elif all(Spielfeld[i][2-i] == x for i in range(3)):
+            print(f"\nSpieler{x} hat gewonnen!")
+
+        x += 1
        
 
 #Allgemeiner Spielablauf
@@ -80,6 +83,15 @@ draw_field()
 
 for x in range(9):
     Zeile, Spalte, Spieler = spielzug(x)
-    prüfe_eingabe(Zeile, Spalte, Spieler)
-    draw_field()
-    check_win()
+    y = 0
+
+    while y == 0:    
+        if 0 <= Zeile < 3  and 0 <= Spalte < 3:
+            prüfe_eingabe(Zeile, Spalte, Spieler)
+            draw_field()
+            check_win()
+            y += 1
+        else:
+
+            print("\nFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!")
+            Zeile, Spalte, Spieler = spielzug(x)
