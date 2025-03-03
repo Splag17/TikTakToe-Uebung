@@ -1,27 +1,12 @@
-#Spielfeldeingabe erstellt
+#Spielfeldeingabematrix erstellt
 Spielfeld = [
             ["" ,"" ,""],
             ["" ,"" ,""],
             ["" ,"" ,""]]
 
-#Spielfeld visualisieren
-# def draw_field():
-#     Zeile = 3
-#     Spalte = 2
-
-#     for y in range(Zeile):
-#         for x in range (Spalte):
-#             print("         |         |         ")
-
-#         if y < 2:
-#             print("_________|_________|_________") 
-
-#         if y == 1:
-#             Spalte = 3 
-
 
 #Spielzug durchführen (Feld wählen)
-def spielzug():    
+def spielzug(Zug):    
     
     if Zug % 2 == 0:
         Eingabe = input("\nSpieler2: Wähle dein Feld (Zeile,Spalte): ")
@@ -35,6 +20,7 @@ def spielzug():
     return Zeile - 1, Spalte - 1, Spieler
 
 
+# Prüfen gewähltes Feld schon belegt ist und Feldwert befuellen
 def prüfe_eingabe(Zeile, Spalte, Spieler):
 
     if Spielfeld[Zeile][Spalte] == 1:
@@ -47,7 +33,9 @@ def prüfe_eingabe(Zeile, Spalte, Spieler):
     return Spielfeld
 
 
+# X oder O nach Eingabe ausgeben
 def print_xo(n,i):
+
     if Spielfeld[n-1][i-1] == 1:
         return("X")
     elif Spielfeld[n-1][i-1] == 2:
@@ -56,7 +44,9 @@ def print_xo(n,i):
         return(" ")
 
 
+#Feld mit Nutzereingaben zeichnen
 def draw_field():
+
     print("        |        |        ")
     print(f"   {print_xo(1,1)}    |    {print_xo(1,2)}   |    {print_xo(1,3)}    ")
     print("________|________|________") 
@@ -67,10 +57,11 @@ def draw_field():
     print(f"   {print_xo(3,1)}    |    {print_xo(3,2)}   |    {print_xo(3,3)}    ")
     print("        |        |        ")
 
-#Tests
+
+#Allgemeiner Spielablauf
 draw_field()
-Zug = 6
-Zeile, Spalte, Spieler = spielzug()
-prüfe_eingabe(Zeile, Spalte, Spieler)
-print(Spielfeld)
-draw_field()
+
+for x in range(9):
+    Zeile, Spalte, Spieler = spielzug(x)
+    prüfe_eingabe(Zeile, Spalte, Spieler)
+    draw_field()
