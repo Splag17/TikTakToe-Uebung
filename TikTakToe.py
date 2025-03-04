@@ -82,15 +82,14 @@ def check_win():
             print(f"\nSpieler{x} hat gewonnen!") 
             return 1       
         else:
-            return 0
-
-    x += 1            
+            x += 1         
    
     
        
 
 #Allgemeiner Spielablauf
 import os
+os.system('cls')
 draw_field()
 
 for x in range(9):    
@@ -119,6 +118,11 @@ for x in range(9):
                 print("\nFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!")
                 Zeile, Spalte, Spieler = spielzug(x)
 
-print('''\n---------------------------------------------
+if Win == 1:
+    print('''\n---------------------------------------------
 Das Spiel ist vorbei. Herzlichen Glückwunsch!
+---------------------------------------------\n''')
+else:
+     print('''\n---------------------------------------------
+Das Spiel ist vorbei. Keiner hat gewonnen :(
 ---------------------------------------------\n''')
