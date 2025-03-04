@@ -63,8 +63,10 @@ def draw_field():
 #Kontrolle der Zeilen und Spalten der Matrix nach 3 in einer Reihe
 def check_win():
     x = 1
+    win = 1
 
-    while x <= 2:  
+    while x <= 2:         
+        
         for z in range(3):
  
             if Spielfeld[z] == [x, x, x]:
@@ -75,9 +77,13 @@ def check_win():
         if all(Spielfeld[i][i] == x for i in range(3)):
             print(f"\nSpieler{x} hat gewonnen!")
         elif all(Spielfeld[i][2-i] == x for i in range(3)):
-            print(f"\nSpieler{x} hat gewonnen!")
+            print(f"\nSpieler{x} hat gewonnen!")        
+        else:
+            win = 0
 
-        x += 1
+        x += 1            
+    return win
+    
        
 
 #Allgemeiner Spielablauf
