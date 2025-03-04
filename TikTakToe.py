@@ -63,48 +63,62 @@ def draw_field():
 #Kontrolle der Zeilen und Spalten der Matrix nach 3 in einer Reihe
 def check_win():
     x = 1
-    win = 1
 
     while x <= 2:         
         
         for z in range(3):
  
             if Spielfeld[z] == [x, x, x]:
-                print(f"\nSpieler{x} hat gewonnen!")  
+                print(f"\nSpieler{x} hat gewonnen!")
+                return 1  
             elif all(Spielfeld[i][z] == x for i in range(3)):
                 print(f"\nSpieler{x} hat gewonnen!") 
+                return 1
 
         if all(Spielfeld[i][i] == x for i in range(3)):
             print(f"\nSpieler{x} hat gewonnen!")
+            return 1
         elif all(Spielfeld[i][2-i] == x for i in range(3)):
-            print(f"\nSpieler{x} hat gewonnen!")        
+            print(f"\nSpieler{x} hat gewonnen!") 
+            return 1       
         else:
-            win = 0
+            return 0
 
-        x += 1            
-    return win
+    x += 1            
+   
     
        
 
 #Allgemeiner Spielablauf
+import os
 draw_field()
 
-for x in range(9):
-    Zeile, Spalte, Spieler = spielzug(x)
-    y = 0    
+for x in range(9):    
+    y = 0                                                                              
+    Win = check_win()
 
-    while y == 0:    
-        if 0 <= Zeile < 3  and 0 <= Spalte < 3:
-            Spielfeld, Blocked = prüfe_eingabe(Zeile, Spalte, Spieler)
+    if Win == 1:
+        break
+    else:
+        Zeile, Spalte, Spieler = spielzug(x)
 
-            if Blocked == 0:
-                draw_field()
-                check_win()
-                y += 1
+        while y == 0: 
+
+            if 0 <= Zeile < 3  and 0 <= Spalte < 3:
+                Spielfeld, Blocked = prüfe_eingabe(Zeile, Spalte, Spieler)
+
+                if Blocked == 0:
+                    os.system('cls')                                                
+                    draw_field()                                 
+                    y += 1
+                else:
+                    print("Wähle ein anderes Feld")
+                    Zeile, Spalte, Spieler = spielzug(x)
+                
             else:
-                print("Wähle ein anderes Feld")
+                print("\nFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!")
                 Zeile, Spalte, Spieler = spielzug(x)
-        
-        else:
-            print("\nFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!")
-            Zeile, Spalte, Spieler = spielzug(x)
+
+print('''\n---------------------------------------------
+Das Spiel ist vorbei. Herzlichen Glückwunsch!
+---------------------------------------------\n''')
