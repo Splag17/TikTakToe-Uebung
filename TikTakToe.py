@@ -9,28 +9,30 @@ Spielfeld = [
 def spielzug(Zug):    
     
     if Zug % 2 == 0:
-        Eingabe = input("\nSpieler2: Wähle dein Feld (Zeile,Spalte): ")
-        Spieler = 2
-    else:
         Eingabe = input("\nSpieler1: Wähle dein Feld (Zeile,Spalte): ")
         Spieler = 1
+    else:
+        Eingabe = input("\nSpieler2: Wähle dein Feld (Zeile,Spalte): ")
+        Spieler = 2
 
     Zeile, Spalte = map(int, Eingabe.split(","))
-#>>>>>>>>>>>>>>>>> Hier noch ausschließen, dass Eingaben unter 1 und über 3 gemacht werden! <<<<<<<<<<<<<<<<<<<<<
     return Zeile - 1, Spalte - 1, Spieler
 
 
 # Prüfen gewähltes Feld schon belegt ist und Feldwert befuellen
 def prüfe_eingabe(Zeile, Spalte, Spieler):
-
+    Blocked = 0
+    
     if Spielfeld[Zeile][Spalte] == 1:
         print('\nDieses Feld ist leider schon mit einem "X" belegt.')
+        Blocked = 1
     elif Spielfeld[Zeile][Spalte] == 2:
         print('\nDieses Feld ist leider schon mit einem "O" belegt.')
+        Blocked = 1
     else:
         Spielfeld[Zeile][Spalte] = Spieler
 
-    return Spielfeld
+    return Spielfeld, Blocked
 
 
 # X oder O nach Eingabe ausgeben
@@ -83,15 +85,20 @@ draw_field()
 
 for x in range(9):
     Zeile, Spalte, Spieler = spielzug(x)
-    y = 0
+    y = 0    
 
     while y == 0:    
         if 0 <= Zeile < 3  and 0 <= Spalte < 3:
-            prüfe_eingabe(Zeile, Spalte, Spieler)
-            draw_field()
-            check_win()
-            y += 1
-        else:
+            Spielfeld, Blocked = prüfe_eingabe(Zeile, Spalte, Spieler)
 
+            if Blocked == 0:
+                draw_field()
+                check_win()
+                y += 1
+            else:
+                print("Wähle ein anderes Feld")
+                Zeile, Spalte, Spieler = spielzug(x)
+        
+        else:
             print("\nFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!")
             Zeile, Spalte, Spieler = spielzug(x)
