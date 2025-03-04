@@ -9,10 +9,10 @@ Spielfeld = [
 def spielzug(Zug):    
     
     if Zug % 2 == 0:
-        Eingabe = input("\nSpieler1: Wähle dein Feld (Zeile,Spalte): ")
+        Eingabe = input("\n\033[93mSpieler1: Wähle dein Feld (Zeile,Spalte): \033[0m")
         Spieler = 1
     else:
-        Eingabe = input("\nSpieler2: Wähle dein Feld (Zeile,Spalte): ")
+        Eingabe = input("\n\033[96mSpieler2: Wähle dein Feld (Zeile,Spalte): \033[0m")
         Spieler = 2
 
     Zeile, Spalte = map(int, Eingabe.split(","))
@@ -24,10 +24,10 @@ def prüfe_eingabe(Zeile, Spalte, Spieler):
     Blocked = 0
     
     if Spielfeld[Zeile][Spalte] == 1:
-        print('\nDieses Feld ist leider schon mit einem "X" belegt.')
+        print('\n\033[91mDieses Feld ist leider schon mit einem "X" belegt.\033[0m')
         Blocked = 1
     elif Spielfeld[Zeile][Spalte] == 2:
-        print('\nDieses Feld ist leider schon mit einem "O" belegt.')
+        print('\n\033[91mDieses Feld ist leider schon mit einem "O" belegt.\033[0m')
         Blocked = 1
     else:
         Spielfeld[Zeile][Spalte] = Spieler
@@ -39,9 +39,9 @@ def prüfe_eingabe(Zeile, Spalte, Spieler):
 def place_xo(n,i):
 
     if Spielfeld[n-1][i-1] == 1:
-        return("X")
+        return("\033[93mX\033[0m")
     elif Spielfeld[n-1][i-1] == 2:
-        return("O")
+        return("\033[96mO\033[0m")
     else:
         return(" ")
 
@@ -111,20 +111,20 @@ for x in range(9):
                     draw_field()                                 
                     y += 1
                 else:
-                    print("Wähle ein anderes Feld")
+                    print("\033[91mWähle ein anderes Feld\033[0m")
                     Zeile, Spalte, Spieler = spielzug(x)
                 
             else:
-                print("\nFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!")
+                print("\n\033[91mFalsche Eingabe. Erlaubt sind nur Zahlen von 1-3!\033[0m")
                 Zeile, Spalte, Spieler = spielzug(x)
 
 if Win == 1:
-    print('''\n---------------------------------------------
+    print('''\n\033[92m---------------------------------------------
 Das Spiel ist vorbei. Herzlichen Glückwunsch!
----------------------------------------------\n''')
+---------------------------------------------\033[0m\n''')
 else:
-     print('''\n---------------------------------------------
+     print('''\n\033[95m---------------------------------------------
 Das Spiel ist vorbei. Keiner hat gewonnen :(
----------------------------------------------\n''')
+---------------------------------------------\033[0m\n''')
 
 input()
