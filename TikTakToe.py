@@ -19,7 +19,7 @@ def spielzug(Zug):
     return Zeile - 1, Spalte - 1, Spieler
 
 
-# Prüfen gewähltes Feld schon belegt ist und Feldwert befuellen
+# Prüfen, ob gewähltes Feld schon belegt ist und Feldwert befuellen
 def prüfe_eingabe(Zeile, Spalte, Spieler):
     Blocked = 0
     
